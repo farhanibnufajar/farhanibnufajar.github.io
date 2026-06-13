@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Farhan Ibnufajar — Electrical Engineer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0A0F1E;
+      --surface:   #111827;
+      --border:    #1E2D45;
+      --accent:    #00C6FF;
+      --accent2:   #0072FF;
+      --text:      #E8EDF5;
+      --muted:     #6B7FA3;
+      --tag-bg:    #0D1F38;
+      --font-display: 'Space Grotesk', sans-serif;
+      --font-mono:    'JetBrains Mono', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-display);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1rem 4rem;
+      background: rgba(10,15,30,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 8rem 4rem 4rem;
+      position: relative; overflow: hidden;
+    }
+    .hero-circuit {
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      opacity: 0.04; pointer-events: none;
+      background-image:
+        linear-gradient(var(--accent) 1px, transparent 1px),
+        linear-gradient(90deg, var(--accent) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+    .hero-glow {
+      position: absolute; top: -200px; right: -200px;
+      width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,198,255,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+    .hero-name {
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+    .hero-name span {
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-title {
+      font-size: 1.1rem;
+      color: var(--muted);
+      font-weight: 400;
+      margin-bottom: 2rem;
+      max-width: 520px;
+    }
+    .hero-badges {
+      display: flex; flex-wrap: wrap; gap: 0.6rem;
+      margin-bottom: 2.5rem;
+    }
+    .badge {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      padding: 0.35rem 0.8rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--accent);
+      background: var(--tag-bg);
+      letter-spacing: 0.05em;
+    }
+    .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      padding: 0.75rem 1.8rem;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #fff;
+      font-family: var(--font-display);
+      font-size: 0.9rem;
+      font-weight: 600;
+      border: none; border-radius: 6px;
+      cursor: pointer; text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-secondary {
+      padding: 0.75rem 1.8rem;
+      background: transparent;
+      color: var(--accent);
+      font-family: var(--font-display);
+      font-size: 0.9rem;
+      font-weight: 600;
+      border: 1px solid var(--accent);
+      border-radius: 6px;
+      cursor: pointer; text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-secondary:hover { background: rgba(0,198,255,0.08); transform: translateY(-1px); }
+
+    /* ── SIGNAL LINE (signature element) ── */
+    .signal-divider {
+      width: 100%; height: 48px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .signal-divider svg { width: 100%; height: 100%; }
+
+    /* ── SECTIONS ── */
+    section { padding: 5rem 4rem; max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 2.5rem;
+    }
+    .divider {
+      width: 100%; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      margin: 0;
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    .about-text p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.2rem;
+    }
+    .stat-card .stat-num {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--accent);
+      font-family: var(--font-mono);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+    .stat-card .stat-desc {
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.3;
+    }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .skill-group {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+    }
+    .skill-group-title {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .skill-tag {
+      font-size: 0.78rem;
+      padding: 0.3rem 0.65rem;
+      background: var(--tag-bg);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--text);
+    }
+
+    /* ── PROJECTS ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.8rem;
+      transition: border-color 0.2s, transform 0.2s;
+      position: relative; overflow: hidden;
+    }
+    .project-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .project-card:hover { border-color: rgba(0,198,255,0.3); transform: translateY(-3px); }
+    .project-card:hover::before { opacity: 1; }
+    .project-icon { font-size: 1.8rem; margin-bottom: 0.8rem; }
+    .project-name {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+    .project-category {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+    }
+    .project-desc {
+      font-size: 0.83rem;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 1rem;
+    }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .project-tag {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      padding: 0.2rem 0.55rem;
+      background: var(--tag-bg);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      color: var(--muted);
+    }
+
+    /* ── EXPERIENCE ── */
+    .exp-list { display: flex; flex-direction: column; gap: 1.5rem; }
+    .exp-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.8rem;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+    .exp-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      margin-top: 0.45rem;
+      flex-shrink: 0;
+      box-shadow: 0 0 8px var(--accent);
+    }
+    .exp-company {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+    .exp-meta {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      margin-bottom: 0.7rem;
+    }
+    .exp-desc {
+      font-size: 0.83rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ── CERTIFICATIONS ── */
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.2rem;
+    }
+    .cert-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.4rem;
+      display: flex; gap: 1rem; align-items: flex-start;
+    }
+    .cert-icon {
+      font-size: 1.5rem; flex-shrink: 0; margin-top: 0.1rem;
+    }
+    .cert-name {
+      font-size: 0.88rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+      line-height: 1.3;
+    }
+    .cert-issuer {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+    .cert-date {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--accent);
+      margin-top: 0.3rem;
+    }
+
+    /* ── CONTACT ── */
+    #contact { text-align: center; }
+    .contact-links {
+      display: flex; justify-content: center;
+      flex-wrap: wrap; gap: 1rem;
+      margin-top: 2rem;
+    }
+    .contact-link {
+      display: flex; align-items: center; gap: 0.5rem;
+      padding: 0.7rem 1.4rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .contact-link:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      #hero { padding: 7rem 1.5rem 3rem; }
+      section { padding: 3.5rem 1.5rem; }
+      .about-grid { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .cert-grid { grid-template-columns: 1fr; }
+      .exp-card { grid-template-columns: 1fr; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-logo">farhan.ibnufajar</span>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-circuit"></div>
+  <div class="hero-glow"></div>
+  <p class="hero-eyebrow">// Electrical Engineering Portfolio</p>
+  <h1 class="hero-name">Farhan<br><span>Ibnufajar</span></h1>
+  <p class="hero-title">Final-year Electrical Engineering student at Unsoed, specializing in IoT systems, industrial automation, and mechatronics.</p>
+  <div class="hero-badges">
+    <span class="badge">ESP32 · MQTT · Firebase</span>
+    <span class="badge">PLC · Omron CP1E</span>
+    <span class="badge">Flutter · C/C++</span>
+    <span class="badge">UAV · CAN Bus</span>
+  </div>
+  <div class="hero-cta">
+    <a href="#projects" class="btn-primary">View Projects</a>
+    <a href="#contact" class="btn-secondary">Get in Touch</a>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <p class="section-label">// 01 — About</p>
+  <h2 class="section-title">Who I Am</h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>Final-year Electrical Engineering student at Universitas Jenderal Soedirman (Unsoed), with a strong focus on IoT systems, industrial automation, and mechatronics.</p>
+      <p>My engineering experience spans the full development cycle — from embedded hardware design and PCB fabrication to firmware development, cloud connectivity, and mobile dashboard integration.</p>
+      <p>I hold a national BNSP competency certification in Industrial Electronics Engineering, and have deployed real-world IoT systems in both agricultural and aquaculture environments.</p>
+    </div>
+    <div class="about-stats">
+      <div class="stat-card">
+        <div class="stat-num">2</div>
+        <div class="stat-desc">Field-deployed IoT systems in production</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">Top 8</div>
+        <div class="stat-desc">KRTI 2024 National UAV Competition</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">2×</div>
+        <div class="stat-desc">Industry internships — Oil & Gas, Electronics Manufacturing</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">P2MW</div>
+        <div class="stat-desc">Ministry-funded commercialized IoT product</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <p class="section-label">// 02 — Skills</p>
+  <h2 class="section-title">Technical Stack</h2>
+  <div class="skills-grid">
+    <div class="skill-group">
+      <div class="skill-group-title">IoT & Embedded</div>
+      <div class="skill-tags">
+        <span class="skill-tag">ESP32</span>
+        <span class="skill-tag">C/C++ Firmware</span>
+        <span class="skill-tag">MQTT Protocol</span>
+        <span class="skill-tag">Firebase</span>
+        <span class="skill-tag">Sensor Integration</span>
+        <span class="skill-tag">PCB Design (EasyEDA)</span>
+        <span class="skill-tag">Flutter Dashboard</span>
+        <span class="skill-tag">CAN Bus</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Automation & PLC</div>
+      <div class="skill-tags">
+        <span class="skill-tag">PLC Omron CP1E</span>
+        <span class="skill-tag">Ladder Diagram</span>
+        <span class="skill-tag">CX-Programmer</span>
+        <span class="skill-tag">Factory I/O</span>
+        <span class="skill-tag">Motor Control</span>
+        <span class="skill-tag">Actuator Control</span>
+        <span class="skill-tag">Industrial Instrumentation</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Tools & Systems</div>
+      <div class="skill-tags">
+        <span class="skill-tag">EasyEDA</span>
+        <span class="skill-tag">Git / GitHub</span>
+        <span class="skill-tag">Electrical Schematic Design</span>
+        <span class="skill-tag">UAV Systems</span>
+        <span class="skill-tag">Functional Testing</span>
+        <span class="skill-tag">Technical Documentation</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <p class="section-label">// 03 — Projects</p>
+  <h2 class="section-title">Featured Work</h2>
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <div class="project-icon">🐔</div>
+      <div class="project-name">IoTernak — IoPeka & IoPakan</div>
+      <div class="project-category">IoT · Commercialized · P2MW-Funded</div>
+      <div class="project-desc">Commercialized an ESP32-based IoT poultry monitoring system with C/C++ firmware, multi-sensor integration (ammonia, temperature, humidity), custom PCB design, and Flutter mobile dashboard — independently deployed to real users, demonstrating end-to-end IoT development from embedded hardware to cloud-connected production system.</div>
+      <div class="project-tags">
+        <span class="project-tag">ESP32</span>
+        <span class="project-tag">MQTT</span>
+        <span class="project-tag">Firebase</span>
+        <span class="project-tag">Flutter</span>
+        <span class="project-tag">C/C++</span>
+        <span class="project-tag">PCB EasyEDA</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-icon">🐟</div>
+      <div class="project-name">IoT Fish Pond Water Quality Monitoring</div>
+      <div class="project-category">IoT · Automation · Aquaculture</div>
+      <div class="project-desc">Developed an ESP32-based IoT system for multi-parameter water quality monitoring (pH, DO, temperature) with C/C++ firmware, automated actuator control, custom PCB design, MQTT communication, and Flutter mobile dashboard with real-time Firebase data logging and visualization.</div>
+      <div class="project-tags">
+        <span class="project-tag">ESP32</span>
+        <span class="project-tag">MQTT</span>
+        <span class="project-tag">Firebase</span>
+        <span class="project-tag">Flutter</span>
+        <span class="project-tag">pH · DO · Temp</span>
+        <span class="project-tag">PCB EasyEDA</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-icon">✈️</div>
+      <div class="project-name">Fixed-Wing UAV Racing Plane — KRTI</div>
+      <div class="project-category">UAV · Avionics · Embedded Systems</div>
+      <div class="project-desc">Led a 12-person UAV team and spearheaded avionics & embedded systems development for a high-speed fixed-wing racing plane (223.2 km/h), integrating flight controller tuning, autonomous flight logic, and CAN Bus communication — achieving Top 8 nationally at KRTI 2024.</div>
+      <div class="project-tags">
+        <span class="project-tag">CAN Bus</span>
+        <span class="project-tag">Flight Controller</span>
+        <span class="project-tag">Autonomous Logic</span>
+        <span class="project-tag">Avionics</span>
+        <span class="project-tag">Team Lead</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-icon">🏭</div>
+      <div class="project-name">Automatic Bottle Filling & Capping Machine</div>
+      <div class="project-category">PLC · Industrial Automation</div>
+      <div class="project-desc">Designed and built a miniature automatic bottle filling and capping trainer using Omron CP1E PLC with ladder diagram logic, controlling a conveyor, water filling pump, and bottle capper actuator — simulating a real industrial production line sequence.</div>
+      <div class="project-tags">
+        <span class="project-tag">Omron CP1E</span>
+        <span class="project-tag">Ladder Diagram</span>
+        <span class="project-tag">CX-Programmer</span>
+        <span class="project-tag">EasyEDA</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-icon">📦</div>
+      <div class="project-name">Dimensional Sorting Conveyor</div>
+      <div class="project-category">IoT · Embedded · Quality Control</div>
+      <div class="project-desc">Designed and implemented an embedded IoT-based dimensional sorting system integrating infrared sensors, servo actuators, and a real-time web dashboard — writing C/C++ firmware for sensor-based classification logic across 4 dimensional categories, directly reflecting automated quality control and conveyor-based sorting principles used in automotive manufacturing lines.</div>
+      <div class="project-tags">
+        <span class="project-tag">ESP32</span>
+        <span class="project-tag">IR Sensor</span>
+        <span class="project-tag">Servo Control</span>
+        <span class="project-tag">C/C++</span>
+        <span class="project-tag">Web Dashboard</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <p class="section-label">// 04 — Experience</p>
+  <h2 class="section-title">Work Experience</h2>
+  <div class="exp-list">
+
+    <div class="exp-card">
+      <div class="exp-dot"></div>
+      <div>
+        <div class="exp-company">PT Pertamina Drilling Services Indonesia</div>
+        <div class="exp-meta">Electrical & Instrumentation Intern · 2024</div>
+        <div class="exp-desc">Validated industrial sensors (temperature & SPM) on a real pump protection system and performed corrective maintenance on 3 electric motors and 2 welding machines — building hands-on instrumentation and troubleshooting skills directly applicable to manufacturing process monitoring and equipment maintenance.</div>
+      </div>
+    </div>
+
+    <div class="exp-card">
+      <div class="exp-dot"></div>
+      <div>
+        <div class="exp-company">PT Panasonic Manufacturing Indonesia</div>
+        <div class="exp-meta">Production Line Intern · 2023</div>
+        <div class="exp-desc">Executed wire harness and capillary tube assembly on a high-volume production line (±1,000 units/day) following strict SOPs and wiring diagrams — developing hardware assembly discipline, attention to detail, and structured work ethic in a fast-paced electronics manufacturing environment.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <p class="section-label">// 05 — Certifications</p>
+  <h2 class="section-title">Credentials</h2>
+  <div class="cert-grid">
+    <div class="cert-card">
+      <div class="cert-icon">🏅</div>
+      <div>
+        <div class="cert-name">Certificate of Competency in Industrial Electronics Engineering</div>
+        <div class="cert-issuer">Badan Nasional Sertifikasi Profesi (BNSP)</div>
+        <div class="cert-date">Oct 2022 · Valid until Jun 2026</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon">🏅</div>
+      <div>
+        <div class="cert-name">Certificate of Competency in Industrial Electronics Engineering</div>
+        <div class="cert-issuer">CV. Merah Putih Keahlian Kompetensi Indonesia</div>
+        <div class="cert-date">Apr 2023 · Valid until Apr 2028</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-label" style="text-align:center">// 06 — Contact</p>
+  <h2 class="section-title" style="text-align:center">Get in Touch</h2>
+  <p style="color:var(--muted); font-size:0.95rem; max-width:480px; margin:0 auto;">Open for internship opportunities in IoT, PLC, and industrial automation. Feel free to reach out.</p>
+  <div class="contact-links">
+    <a href="mailto:farhanibnufajar@gmail.com" class="contact-link">✉️ Email</a>
+    <a href="https://linkedin.com/in/farhanibnufajar" target="_blank" class="contact-link">💼 LinkedIn</a>
+    <a href="https://github.com/farhanibnufajar" target="_blank" class="contact-link">🐙 GitHub</a>
+  </div>
+</section>
+
+<footer>
+  <p>Built by Farhan Ibnufajar · farhanibnufajar.github.io</p>
+</footer>
+
+</body>
+</html>
